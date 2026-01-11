@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Intake | CompliTrst</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #faf9f7;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e3df;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .brand-text {
+            text-align: right;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c2c2c;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-domain {
+            font-size: 13px;
+            color: #8a8a8a;
+        }
+
+        .form-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 32px;
+        }
+
+        .form-section {
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .form-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #d4af37, #c9a229);
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #2c2c2c;
+            margin-bottom: 6px;
+        }
+
+        .required::after {
+            content: ' *';
+            color: #d4af37;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            font-size: 15px;
+            font-family: inherit;
+            background: #ffffff;
+            transition: all 0.2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #d4af37;
+        }
+
+        .checkbox-item label {
+            margin-bottom: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        .helper-text {
+            font-size: 13px;
+            color: #8a8a8a;
+            margin-top: 4px;
+        }
+
+        .error-text {
+            font-size: 13px;
+            color: #c74444;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #d4af37, #c9a229);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 24px;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            display: none;
+            background: #f0f9f4;
+            border: 1px solid #a7e3c0;
+            color: #2d6a4f;
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        .error-message {
+            display: none;
+            background: #fef2f2;
+            border: 1px solid #f5c6c6;
+            color: #c74444;
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        @media (max-width: 640px) {
+            .form-card {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .brand-text {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="logo.png" alt="CompliTrst" class="logo">
+            <div class="brand-text">
+                <div class="brand-name">CompliTrst</div>
+                <div class="brand-domain">complitrst.com</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="form-card">
+            <h1>CRM & Operations Intake</h1>
+            <p class="subtitle">Help us understand your shop's needs so we can design the perfect system for your business.</p>
+
+            <form id="intakeForm">
+                <div class="form-section">
+                    <h2 class="section-title">Business Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="businessName" class="required">Business Name</label>
+                        <input type="text" id="businessName" name="businessName" required>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="contactName" class="required">Primary Contact Name</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role" class="required">Role</label>
+                            <select id="role" name="role" required>
+                                <option value="">Select role</option>
+                                <option value="Owner">Owner</option>
+                                <option value="GM">GM</option>
+                                <option value="Ops/Shop Manager">Ops/Shop Manager</option>
+                                <option value="Front Desk/Coordinator">Front Desk/Coordinator</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="email" class="required">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="required">Phone</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">Project Goals</h2>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="goLiveDate" class="required">Target Go-Live Date</label>
+                            <input type="date" id="goLiveDate" name="goLiveDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="primaryGoal" class="required">Primary Goal</label>
+                            <select id="primaryGoal" name="primaryGoal" required>
+                                <option value="">Select primary goal</option>
+                                <option value="Lead tracking and follow-up">Lead tracking and follow-up</option>
+                                <option value="Scheduling and no-show reduction">Scheduling and no-show reduction</option>
+                                <option value="Shop workflow (statuses, assignments, bays)">Shop workflow (statuses, assignments, bays)</option>
+                                <option value="Intake with photos and condition notes">Intake with photos and condition notes</option>
+                                <option value="Invoicing/deposits/payments">Invoicing/deposits/payments</option>
+                                <option value="Retention (reviews, reminders, memberships)">Retention (reviews, reminders, memberships)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">Phase 1 Priorities (select up to 6)</label>
+                        <div class="helper-text" style="margin-bottom: 12px;">Choose the features most critical for your initial launch</div>
+                        <div class="checkbox-group" id="prioritiesGroup">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="p1" name="priorities" value="Customer profiles & multiple vehicles">
+                                <label for="p1">Customer profiles & multiple vehicles</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="p2" name="priorities" value="Scheduling calendar & confirmations">
+                                <label for="p2">Scheduling calendar & confirmations</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="p3" name="priorities" value="Bay/tech assignment & capacity rules">
+                                <label for="p3">Bay/tech assignment & capacity rules</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="p4" name="priorities" value="Job status pipeline">
+                                <label for="p4">Job status pipeline</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="p5" name="priorities" value="Intake checklist & before/after photos">
+                                <label for="p5">Intake checklist & before/after photos</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="p6" name="priorities" value="Quote builder & approvals">
+                                <label for="p6">Quote builder & approvals</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="p7" name="priorities" value="Invoices & deposits & tips">
+                                <label for="p7">Invoices & deposits & tips</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="p8" name="priorities" value="Automated messages (reminders, ready alerts)">
+                                <label for="p8">Automated messages (reminders, ready alerts)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="p9" name="priorities" value="Memberships / maintenance plans">
+                                <label for="p9">Memberships / maintenance plans</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="p10" name="priorities" value="Dashboards & reporting">
+                                <label for="p10">Dashboards & reporting</label>
+                            </div>
+                        </div>
+                        <div class="error-text" id="prioritiesError">Please select up to 6 priorities</div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">Current Operations</h2>
+
+                    <div class="form-group">
+                        <label for="currentTools" class="required">Current Tools</label>
+                        <input type="text" id="currentTools" name="currentTools" placeholder="e.g., Excel, Square, pen and paper" required>
+                        <div class="helper-text">List any software or systems you currently use</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="leadSources" class="required">Lead Sources</label>
+                        <input type="text" id="leadSources" name="leadSources" placeholder="e.g., Google, Instagram, referrals, walk-ins" required>
+                        <div class="helper-text">How do new customers typically find you?</div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="paymentModel" class="required">Payment Model</label>
+                            <select id="paymentModel" name="paymentModel" required>
+                                <option value="">Select payment model</option>
+                                <option value="Deposits&balance">Deposits & balance</option>
+                                <option value="Pay in full only">Pay in full only</option>
+                                <option value="Membership billing">Membership billing</option>
+                                <option value="Combination">Combination</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="paymentTool">Payment Tool</label>
+                            <input type="text" id="paymentTool" name="paymentTool" placeholder="e.g., Square, Stripe, Clover">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="integrations">Desired Integrations</label>
+                        <input type="text" id="integrations" name="integrations" placeholder="e.g., QuickBooks, Mailchimp, Google Calendar">
+                        <div class="helper-text">Any third-party services you need to connect?</div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">Team & Communication</h2>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="numberOfUsers" class="required">Number of Users</label>
+                            <input type="number" id="numberOfUsers" name="numberOfUsers" min="1" required>
+                            <div class="helper-text">How many people will access the system?</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rolesNeeded">Roles Needed</label>
+                            <input type="text" id="rolesNeeded" name="rolesNeeded" placeholder="e.g., Admin, Detailer, Front Desk">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerUpdates" class="required">Customer Updates Preference</label>
+                        <select id="customerUpdates" name="customerUpdates" required>
+                            <option value="">Select preference</option>
+                            <option value="Text only">Text only</option>
+                            <option value="Email only">Email only</option>
+                            <option value="Text&Email">Text & Email</option>
+                            <option value="Client portal&messages">Client portal & messages</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">Budget & Decision Making</h2>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="budgetRange" class="required">Phase 1 Budget Range</label>
+                            <select id="budgetRange" name="budgetRange" required>
+                                <option value="">Select budget range</option>
+                                <option value="$5k-$15k">$5k – $15k</option>
+                                <option value="$15k-$30k">$15k – $30k</option>
+                                <option value="$30k-$60k">$30k – $60k</option>
+                                <option value="$60k+">$60k+</option>
+                                <option value="Not decided">Not decided</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="decisionMaker" class="required">Decision Maker Name/Title</label>
+                            <input type="text" id="decisionMaker" name="decisionMaker" placeholder="e.g., John Smith, Owner" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Additional Notes</label>
+                        <textarea id="notes" name="notes" placeholder="Anything else we should know about your business or requirements?"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Intake Form</button>
+                
+                <div class="success-message" id="successMessage">
+                    Submitted successfully. We'll review your information and be in touch shortly.
+                </div>
+                
+                <div class="error-message" id="errorMessage">
+                    There was an error submitting your form. Please try again or contact us directly.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('intakeForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const prioritiesError = document.getElementById('prioritiesError');
+        const checkboxes = document.querySelectorAll('input[name="priorities"]');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const checkedCount = document.querySelectorAll('input[name="priorities"]:checked').length;
+                
+                if (checkedCount > 6) {
+                    checkbox.checked = false;
+                    prioritiesError.style.display = 'block';
+                } else {
+                    prioritiesError.style.display = 'none';
+                }
+            });
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const checkedPriorities = Array.from(document.querySelectorAll('input[name="priorities"]:checked'))
+                .map(cb => cb.value);
+            
+            if (checkedPriorities.length === 0 || checkedPriorities.length > 6) {
+                prioritiesError.style.display = 'block';
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+            const formData = {
+                businessName: document.getElementById('businessName').value,
+                contactName: document.getElementById('contactName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                role: document.getElementById('role').value,
+                goLiveDate: document.getElementById('goLiveDate').value,
+                primaryGoal: document.getElementById('primaryGoal').value,
+                priorities: checkedPriorities,
+                currentTools: document.getElementById('currentTools').value,
+                leadSources: document.getElementById('leadSources').value,
+                paymentModel: document.getElementById('paymentModel').value,
+                paymentTool: document.getElementById('paymentTool').value,
+                integrations: document.getElementById('integrations').value,
+                numberOfUsers: document.getElementById('numberOfUsers').value,
+                rolesNeeded: document.getElementById('rolesNeeded').value,
+                customerUpdates: document.getElementById('customerUpdates').value,
+                budgetRange: document.getElementById('budgetRange').value,
+                decisionMaker: document.getElementById('decisionMaker').value,
+                notes: document.getElementById('notes').value,
+                pageUrl: window.location.href,
+                submittedAt: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch('/api/intake', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.ok) {
+                    successMessage.style.display = 'block';
+                    form.reset();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    errorMessage.style.display = 'block';
+                }
+            } catch (error) {
+                errorMessage.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Intake Form';
+            }
+        });
+    </script>
+</body>
+</html>

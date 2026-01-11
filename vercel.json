@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/intake",
+      "destination": "/api/intake.js"
+    }
+  ]
+}
