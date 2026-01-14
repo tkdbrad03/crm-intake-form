@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DetailPro CRM &amp; ShopOS Platform Proposal</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tkdbrad03/complitrst-landing/refs/heads/main/complitrst-favicon.png">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #faf9f7;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e3df;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .brand-text {
+            text-align: right;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c2c2c;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-domain {
+            font-size: 13px;
+            color: #8a8a8a;
+        }
+
+        .form-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 32px;
+        }
+
+        .form-section {
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .form-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #d4af37, #c9a229);
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #2c2c2c;
+            margin-bottom: 6px;
+        }
+
+        .required::after {
+            content: ' *';
+            color: #d4af37;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            font-size: 15px;
+            font-family: inherit;
+            background: #ffffff;
+            transition: all 0.2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #d4af37;
+        }
+
+        .checkbox-item label {
+            margin-bottom: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        .helper-text {
+            font-size: 13px;
+            color: #8a8a8a;
+            margin-top: 4px;
+        }
+
+        .error-text {
+            font-size: 13px;
+            color: #c74444;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #d4af37, #c9a229);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 24px;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            display: none;
+            background: #f0f9f4;
+            border: 1px solid #a7e3c0;
+            color: #2d6a4f;
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        .error-message {
+            display: none;
+            background: #fef2f2;
+            border: 1px solid #f5c6c6;
+            color: #c74444;
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        @media (max-width: 640px) {
+            .form-card {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .brand-text {
+                text-align: left;
+            }
+        }
+    
+
+        /* Proposal layout additions aligned to existing theme */
+        .proposal-meta{
+            display:grid;
+            grid-template-columns: 1fr;
+            gap: 6px;
+            margin-top: 12px;
+            color: #666;
+            font-size: 14px;
+        }
+        .pill{
+            display:inline-block;
+            padding: 2px 10px;
+            border-radius: 999px;
+            background: #f0f9f4;
+            border: 1px solid #a7e3c0;
+            color: #2d6a4f;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .callout{
+            background: #faf9f7;
+            border: 1px solid #d9d9d9;
+            border-left: 6px solid #2d6a4f;
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 12px;
+            color: #2c2c2c;
+        }
+        .callout strong{ color:#2d6a4f; }
+        .table-wrap{
+            overflow-x:auto;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            background: #ffffff;
+            margin-top: 10px;
+        }
+        table{
+            width:100%;
+            border-collapse: collapse;
+            min-width: 720px;
+        }
+        th, td{
+            padding: 12px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            text-align:left;
+            vertical-align: top;
+            color: #2c2c2c;
+            font-size: 14px;
+        }
+        th{
+            background:#f0f9f4;
+            color:#2d6a4f;
+            font-weight:700;
+            border-bottom: 1px solid #d9d9d9;
+        }
+        tr:last-child td{ border-bottom:none; }
+        .two-col{
+            display:grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+        @media (min-width: 900px){
+            .proposal-meta{ grid-template-columns: 1fr 1fr; }
+            .two-col{ grid-template-columns: 1fr 1fr; }
+        }
+        .fineprint{
+            color:#8a8a8a;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+        .hr{
+            height:1px;
+            background:#d9d9d9;
+            margin: 14px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div style="display:flex; align-items:center; gap:14px;">
+                <img class="logo" src="https://raw.githubusercontent.com/tkdbrad03/complitrst-landing/refs/heads/main/complitrst-logo_transparent.png" alt="Logo" />
+                <div class="brand-text">
+                    <div class="brand-name">DetailPro</div>
+                    <div class="brand-domain">CRM &amp; ShopOS Proposal</div>
+                </div>
+            </div>
+            <div class="brand-text" style="text-align:right;">
+                <div class="brand-domain">January 14, 2026</div>
+                <div class="subtitle" style="margin-top:4px;">Prepared by Dr. Tasha McCray</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 28px 20px 50px;">
+        <div class="form-card">
+            <div class="form-section">
+                <div class="section-title">DetailPro CRM &amp; ShopOS Platform Proposal</div>
+                <div class="subtitle" style="margin-top:8px;">
+                    Prepared for <strong>James Clark, Premium Auto Strategies</strong>
+                </div>
+
+                <div class="proposal-meta">
+                    <div><span class="pill">Build fee</span> <strong>$202,500</strong></div>
+                    <div><span class="pill">Operating tools</span> <strong>Estimated $150–$900 per month</strong> (single shop, excludes processing fees)</div>
+                    <div><span class="pill">Payments</span> Stripe &amp; Square</div>
+                    <div><span class="pill">Comms</span> Two-way SMS &amp; calling (Twilio)</div>
+                </div>
+
+                <div class="callout">
+                    <strong>Purpose:</strong> Build the platform to run your shop first, then evolve it into a sellable SaaS for other shops.
+                    The system will be architected from day one for multi-tenant expansion (future multi-shop) without needing a rebuild.
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">1) Executive Summary</div>
+                <p class="helper-text" style="font-size:14px;">
+                    You want a unified CRM &amp; ShopOS that replaces your current tool stack and creates one system for lead flow, quoting,
+                    scheduling, job execution, payments, and communication. The goal is to validate it in your shop, then sell it to other shops
+                    as a subscription service.
+                </p>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">2) Goals &amp; Outcomes</div>
+                <div class="two-col">
+                    <div>
+                        <div class="subtitle"><strong>Operate your shop</strong></div>
+                        <ul class="helper-text" style="margin-top:8px; padding-left:18px; font-size:14px;">
+                            <li>Centralize leads, customers, vehicles, services, tasks, scheduling, quotes, invoices, and payments</li>
+                            <li>Reduce tool sprawl and manual follow-up</li>
+                            <li>Improve conversion tracking and sales accountability</li>
+                            <li>Enable role-based workflows for admin, sales, and techs</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="subtitle"><strong>Build SaaS foundation</strong></div>
+                        <ul class="helper-text" style="margin-top:8px; padding-left:18px; font-size:14px;">
+                            <li>Multi-tenant architecture ready for additional shops</li>
+                            <li>Templates and onboarding path for future customers</li>
+                            <li>Reporting and audit logging suitable for scale</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">3) Requirements Confirmed</div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px;">
+                    <li>Single-shop launch first, SaaS and multi-shop later (product-ready from day one)</li>
+                    <li>Payments: deposits and balance, processed through Stripe &amp; Square</li>
+                    <li>Communication: two-way SMS &amp; calling, tied to customer records</li>
+                    <li>Devices: desktop-first and tablet-friendly workflows (mobile-first not required)</li>
+                    <li>Core modules: customers, vehicles, pipeline, scheduling, quoting, invoicing, dashboards, reporting, recommended services</li>
+                    <li>Migration: import of customers, active leads, and upcoming appointments from existing tools</li>
+                </ul>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">4) Technical Architecture</div>
+                <p class="helper-text" style="font-size:14px;">
+                    The prototype UI is built with React, TypeScript, Vite, Tailwind, and shadcn/ui components.
+                    The build will add a production backend, role-based access, integrations, and audit-grade logging.
+                </p>
+
+                <div class="two-col" style="margin-top:12px;">
+                    <div class="callout" style="margin-top:0;">
+                        <strong>Backend recommendation:</strong> Supabase (Postgres) for authentication, database, storage, Row Level Security, and APIs.
+                        This fits CRM reporting and structured relational data better than a purely document-based approach.
+                    </div>
+                    <div class="callout" style="margin-top:0; border-left-color:#d4af37;">
+                        <strong>Integrations:</strong> Twilio (SMS &amp; calling), Stripe, Square, and an email provider for confirmations and receipts.
+                        Monitoring and error tracking will be enabled for stability.
+                    </div>
+                </div>
+
+                <div class="fineprint">
+                    Note: Vendor accounts (Twilio, Stripe, Square, hosting) are owned and billed directly to the client. See Section 7.
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">5) Scope of Work</div>
+
+                <div class="subtitle"><strong>A) Platform foundation</strong></div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px; margin-top:8px;">
+                    <li>Authentication and role-based access (Owner, Admin, Sales, Tech)</li>
+                    <li>Multi-tenant data model (Organization, Location, Users) to support future SaaS</li>
+                    <li>API layer, audit logs, and environment setup (dev, staging, production)</li>
+                </ul>
+
+                <div class="subtitle" style="margin-top:14px;"><strong>B) CRM: customers and vehicles</strong></div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px; margin-top:8px;">
+                    <li>Customer records with multiple vehicles per customer</li>
+                    <li>Service history, notes, tags, attachments</li>
+                    <li>Recommended services (rules-based initially, AI-enhanced later if desired)</li>
+                </ul>
+
+                <div class="subtitle" style="margin-top:14px;"><strong>C) Sales pipeline and follow-up</strong></div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px; margin-top:8px;">
+                    <li>Pipeline stages, lead sources, deal values, assignment and activity logs</li>
+                    <li>Follow-up tasks and reminders with accountability visibility</li>
+                    <li>Conversion reporting baseline</li>
+                </ul>
+
+                <div class="subtitle" style="margin-top:14px;"><strong>D) Scheduling and capacity</strong></div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px; margin-top:8px;">
+                    <li>Calendar scheduling with duration presets and service categories</li>
+                    <li>Basic capacity rules, bay and tech assignment support</li>
+                    <li>Confirmations (email first, SMS expanded with Twilio)</li>
+                </ul>
+
+                <div class="subtitle" style="margin-top:14px;"><strong>E) Quote, booking, invoice workflow</strong></div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px; margin-top:8px;">
+                    <li>Quote builder aligned to your package and add-on structure</li>
+                    <li>Approval flow, convert quote to booking and invoice</li>
+                    <li>Status tracking: Draft, Sent, Approved, Scheduled, Completed, Paid</li>
+                </ul>
+
+                <div class="subtitle" style="margin-top:14px;"><strong>F) Payments</strong></div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px; margin-top:8px;">
+                    <li>Stripe and Square integration options</li>
+                    <li>Deposit and balance workflows</li>
+                    <li>Automatic status updates via webhooks and reconciliation view</li>
+                </ul>
+
+                <div class="subtitle" style="margin-top:14px;"><strong>G) Communication</strong></div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px; margin-top:8px;">
+                    <li>Two-way SMS inbox tied to customer records (Twilio)</li>
+                    <li>Click-to-call and call logging (Twilio)</li>
+                    <li>Opt-out compliance and suppression handling</li>
+                </ul>
+
+                <div class="subtitle" style="margin-top:14px;"><strong>H) Dashboards and reporting</strong></div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px; margin-top:8px;">
+                    <li>Owner dashboard: conversion rates, revenue indicators, performance</li>
+                    <li>Sales dashboard: pipeline value, tasks, schedule and expected revenue</li>
+                    <li>Tech dashboard: assigned jobs, daily workload (tablet-friendly)</li>
+                </ul>
+
+                <div class="subtitle" style="margin-top:14px;"><strong>I) Data migration</strong></div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px; margin-top:8px;">
+                    <li>Import of customers, active leads, and upcoming appointments</li>
+                    <li>Mapping rules documented and validated</li>
+                </ul>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">6) Project Plan and Timeline</div>
+                <p class="helper-text" style="font-size:14px;">
+                    The project is delivered in milestones with review points to keep scope controlled and progress measurable.
+                    Estimated timeline is 18 weeks from kickoff.
+                </p>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width:110px;">Milestone</th>
+                                <th>Focus</th>
+                                <th style="width:140px;">Timeline</th>
+                                <th style="width:180px;">Key deliverables</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1</strong></td>
+                                <td>Blueprint and scope lock</td>
+                                <td>Weeks 1–2</td>
+                                <td>Final data model, role matrix, workflows, acceptance criteria</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2</strong></td>
+                                <td>Core MVP modules</td>
+                                <td>Weeks 3–8</td>
+                                <td>Customers, vehicles, pipeline, scheduling, quote flow, dashboards (live data)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3</strong></td>
+                                <td>Invoicing and Stripe</td>
+                                <td>Weeks 9–12</td>
+                                <td>Invoice flow, deposits and balance, Stripe webhooks and status updates</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4</strong></td>
+                                <td>Square and communications</td>
+                                <td>Weeks 13–16</td>
+                                <td>Square integration, SMS and calling logs, inbox view, polish and QA</td>
+                            </tr>
+                            <tr>
+                                <td><strong>5</strong></td>
+                                <td>UAT and go-live</td>
+                                <td>Weeks 17–18</td>
+                                <td>User testing, bug fixes, training, documentation, production launch</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="fineprint">
+                    Timeline assumes weekly approvals and timely access to vendor accounts and sample quote scenarios.
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">7) Investment and Payment Schedule</div>
+                <div class="callout">
+                    <strong>Fixed project build fee:</strong> $202,500
+                    <div class="fineprint" style="margin-top:8px;">
+                        This fee covers the build scope in Sections 4–6. Client operating tools are not included.
+                    </div>
+                </div>
+
+                <div class="table-wrap" style="margin-top:12px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width:110px;">Payment</th>
+                                <th>When due</th>
+                                <th style="width:160px;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1</strong></td>
+                                <td>Kickoff (Milestone 1 start)</td>
+                                <td>$40,500</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2</strong></td>
+                                <td>Milestone 2 start</td>
+                                <td>$50,625</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3</strong></td>
+                                <td>Milestone 3 start</td>
+                                <td>$50,625</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4</strong></td>
+                                <td>Milestone 4 start</td>
+                                <td>$40,500</td>
+                            </tr>
+                            <tr>
+                                <td><strong>5</strong></td>
+                                <td>Milestone 5 start (go-live and handoff)</td>
+                                <td>$20,250</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">8) Client Tools and Operating Costs</div>
+                <p class="helper-text" style="font-size:14px;">
+                    Vendor costs are billed directly to your accounts. These ranges are typical for one shop and scale with usage.
+                </p>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Typical monthly range</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hosting</td>
+                                <td>$20–$150</td>
+                                <td>Frontend hosting and bandwidth</td>
+                            </tr>
+                            <tr>
+                                <td>Database and backend</td>
+                                <td>$25–$200 early</td>
+                                <td>Scales with users, records, and reporting</td>
+                            </tr>
+                            <tr>
+                                <td>SMS and calling</td>
+                                <td>$50–$400 typical</td>
+                                <td>Two-way SMS and call minutes; scales with volume</td>
+                            </tr>
+                            <tr>
+                                <td>Email delivery</td>
+                                <td>$15–$100</td>
+                                <td>Confirmations, receipts, system notifications</td>
+                            </tr>
+                            <tr>
+                                <td>Monitoring</td>
+                                <td>$0–$50</td>
+                                <td>Error tracking and alerting</td>
+                            </tr>
+                            <tr>
+                                <td>Storage</td>
+                                <td>$0–$300</td>
+                                <td>Photos, attachments; higher with heavy video usage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout" style="border-left-color:#c9a229;">
+                    <strong>Important:</strong> Stripe and Square processing fees are separate and depend on transaction volume.
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">9) Assumptions and Client Responsibilities</div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px;">
+                    <li>Client provides access to prototype, requirements, and vendor accounts (Twilio, Stripe, Square)</li>
+                    <li>Weekly 30–45 minute check-in for approvals and decisions</li>
+                    <li>Quote rules are finalized with real-world examples during Milestone 1</li>
+                    <li>Migration scope is limited to customers, active leads, and upcoming appointments unless expanded</li>
+                </ul>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">10) Out of Scope (Available as Add-Ons)</div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px;">
+                    <li>Full historical migration from every system</li>
+                    <li>Advanced campaign builder equivalent to full marketing automation suites</li>
+                    <li>Mobile-first redesign</li>
+                    <li>Deep AI agent features beyond agreed baseline</li>
+                    <li>Complex inventory accounting and full bookkeeping</li>
+                    <li>White-label reseller portal and marketplace buildout</li>
+                </ul>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">11) Change Control</div>
+                <p class="helper-text" style="font-size:14px;">
+                    Scope is finalized during Milestone 1. Any additions after sign-off will be handled via a written change order
+                    with updated cost and timeline, or scheduled as a future enhancement phase.
+                </p>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">12) Post-Launch Support</div>
+                <div class="two-col">
+                    <div class="callout" style="margin-top:0;">
+                        <strong>Included:</strong> 30-day stabilization period after go-live (bug fixes tied to agreed scope, performance tuning, minor usability refinements).
+                    </div>
+                    <div class="callout" style="margin-top:0; border-left-color:#2d6a4f;">
+                        <strong>Optional retainer:</strong> ongoing enhancements, monitoring, and prioritized updates.
+                        Suggested range: $2,500–$7,500 per month depending on scope and velocity.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">13) Acceptance Criteria</div>
+                <ul class="helper-text" style="padding-left:18px; font-size:14px;">
+                    <li>Lead to quote to booking to invoice to payment to completion works end-to-end</li>
+                    <li>Role-based access functions correctly for Owner, Admin, Sales, and Tech</li>
+                    <li>Scheduling supports agreed capacity rules and assignments</li>
+                    <li>SMS and calling logs attach to customer records</li>
+                    <li>Dashboards load from live data accurately</li>
+                    <li>Production deployment and documentation are delivered</li>
+                </ul>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">14) Next Steps</div>
+                <ol class="helper-text" style="padding-left:18px; font-size:14px;">
+                    <li>Approve proposal and milestone payment schedule</li>
+                    <li>Kickoff meeting and access setup</li>
+                    <li>Milestone 1 blueprint sign-off</li>
+                    <li>Build begins immediately after blueprint approval</li>
+                </ol>
+
+                <div class="hr"></div>
+                <div class="fineprint">
+                    Prepared by Dr. Tasha McCray. This proposal is valid for 30 days unless scope or requirements change.
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
